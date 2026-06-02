@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing & Schedule – Fight Mechanics | Medavakkam, Chennai</title>
+  <meta name="description" content="View Fight Mechanics pricing plans and weekly training schedule. Adult memberships, Kids Martial Arts, and Personal Training in Medavakkam, Chennai.">
+  <link rel="icon" type="image/png" href="assets/Icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+
+
+    /* ── REGISTRATION BANNER ── */
+    .reg-banner {
+      background: linear-gradient(135deg, rgba(214,40,40,0.12) 0%, rgba(214,40,40,0.06) 100%);
+      border: 1px solid rgba(214,40,40,0.25);
+      border-radius: var(--radius);
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 64px;
+    }
+    .reg-left { display: flex; align-items: center; gap: 16px; }
+    .reg-icon {
+      width: 46px; height: 46px;
+      background: rgba(214,40,40,0.15);
+      border: 1px solid rgba(214,40,40,0.3);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent-red);
+      flex-shrink: 0;
+    }
+    .reg-text-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 16px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      margin-bottom: 3px;
+    }
+    .reg-text-sub { font-size: 13px; color: var(--text-secondary); }
+    .reg-price {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 38px;
+      color: var(--accent-red);
+      line-height: 1;
+    }
+    .reg-includes {
+      display: flex; gap: 12px; flex-wrap: wrap;
+    }
+    .reg-include-item {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 12.5px; color: var(--text-secondary);
+    }
+    .reg-include-dot { width: 5px; height: 5px; background: var(--accent-gold); border-radius: 50%; flex-shrink: 0; }
+
+    /* ── PRICING SECTION ── */
+    .pricing-section { padding: 80px 28px; }
+    .pricing-inner { max-width: 1300px; margin: 0 auto; }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 52px;
+    }
+
+    .price-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 36px 32px;
+      position: relative;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+      display: flex;
+      flex-direction: column;
+    }
+    .price-card:hover {
+      border-color: rgba(230,184,0,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.4);
+    }
+    .price-card.featured {
+      border-color: var(--accent-gold);
+      background: linear-gradient(160deg, #1c1c00 0%, #151515 60%);
+    }
+    .price-card.featured:hover {
+      box-shadow: 0 20px 56px rgba(230,184,0,0.15);
+    }
+
+    .price-card-badge {
+      position: absolute;
+      top: -13px; left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent-gold);
+      color: #0A0A0A;
+      font-family: 'Oswald', sans-serif;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    .price-card-category {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-red);
+      margin-bottom: 8px;
+    }
+
+    .price-card-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .price-card-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+
+    .price-amount {
+      margin-bottom: 28px;
+    }
+    .price-currency {
+      font-family: 'Oswald', sans-serif;
+      font-size: 22px;
+      color: var(--accent-gold);
+      vertical-align: top;
+      margin-top: 8px;
+      display: inline-block;
+    }
+    .price-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 68px;
+      color: var(--accent-gold);
+      line-height: 1;
+    }
+    .price-period {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .price-divider {
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 24px;
+    }
+
+    .price-includes-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .price-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 32px;
+      flex: 1;
+    }
+    .price-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+    .price-check {
+      width: 16px; height: 16px;
+      background: rgba(230,184,0,0.12);
+      border: 1px solid rgba(230,184,0,0.3);
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .price-check svg { color: var(--accent-gold); }
+
+    /* Personal Training card full width */
+    .price-card.personal {
+      grid-column: span 3;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      align-items: center;
+    }
+    .personal-left { }
+    .personal-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 16px;
+    }
+    .personal-perks {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .perk-chip {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 8px 13px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      color: var(--text-secondary);
+    }
+    .perk-chip svg { color: var(--accent-gold); }
+
+    /* ── SCHEDULE SECTION ── */
+    .schedule-section {
+      background: var(--bg-secondary);
+      padding: 80px 28px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .schedule-inner { max-width: 1300px; margin: 0 auto; }
+
+    .schedule-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 32px;
+      margin-bottom: 48px;
+    }
+
+    .hours-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 20px;
+    }
+    .hours-icon { color: var(--accent-gold); flex-shrink: 0; }
+    .hours-text { }
+    .hours-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 3px;
+    }
+    .hours-value {
+      font-family: 'Oswald', sans-serif;
+      font-size: 15px; font-weight: 600;
+      color: var(--text-primary);
+    }
+    .hours-value span { color: var(--accent-gold); }
+
+    .schedule-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+    }
+
+    .day-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .day-card:hover { border-color: rgba(230,184,0,0.2); }
+    .day-card.closed { opacity: 0.45; }
+
+    .day-header {
+      background: #111;
+      padding: 12px 14px 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .day-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px; font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+    .day-tag {
+      font-size: 10px;
+      color: var(--text-muted);
+      font-family: 'Oswald', sans-serif;
+      letter-spacing: 0.5px;
+    }
+    .day-card:not(.closed) .day-name { color: var(--accent-gold); }
+
+    .day-slots {
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .time-slot {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 9px 11px;
+    }
+    .time-slot-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 9px; font-weight: 500;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--accent-red); margin-bottom: 3px;
+    }
+    .time-slot-time {
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px; font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .closed-text {
+      padding: 24px 14px;
+      text-align: center;
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .schedule-note {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(230,184,0,0.06);
+      border: 1px solid rgba(230,184,0,0.15);
+      border-radius: 9px;
+      padding: 14px 18px;
+      margin-top: 24px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    .schedule-note svg { color: var(--accent-gold); flex-shrink: 0; }
+
+
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+      .pricing-grid { grid-template-columns: 1fr 1fr; }
+      .price-card.personal { grid-column: span 2; }
+      .schedule-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    @media (max-width: 900px) {
+      .schedule-grid { grid-template-columns: repeat(3, 1fr); }
+      .schedule-header { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+      .price-card.personal { grid-column: 1; display: block; }
+      .personal-right { align-items: flex-start; margin-top: 24px; }
+      .personal-perks { justify-content: flex-start; }
+      .schedule-grid { grid-template-columns: repeat(2, 1fr); }
+      .reg-banner { flex-direction: column; align-items: flex-start; }
+      .pricing-section { padding: 56px 20px; }
+      .schedule-section { padding: 56px 20px; }
+      .pricing-cta { padding: 72px 20px; }
+    }
+    @media (max-width: 480px) {
+      .schedule-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/Logo_navbar.png" alt="Fight Mechanics">
+    </a>
+    <ul class="nav-center">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="location.html">Location</a></li>
+      <li><a href="pricing.html" class="active">Pricing &amp; Schedule</a></li>
+      <li class="nav-dropdown" id="contactDropdown">
+        <button class="nav-dropdown-btn">
+          Contact
+          <svg class="chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5l3 3 3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </button>
+        <div class="dropdown-panel">
+          <a href="tel:+916369579589" class="dropdown-link">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+            +91 63695 79589
+          </a>
+          <a href="https://wa.me/916369579589?text=Hi%2C%20I%27d%20like%20to%20book%20a%20trial%20class%20at%20Fight%20Mechanics." target="_blank" class="dropdown-link">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp Us
+          </a>
+        </div>
+      </li>
+    </ul>
+    <div class="nav-right">
+      <a href="https://www.instagram.com/fightmechanics_official/" target="_blank" class="nav-ig" aria-label="Instagram">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="https://wa.me/916369579589?text=Hi%2C%20I%27d%20like%20to%20book%20a%20trial%20class%20at%20Fight%20Mechanics." target="_blank" class="btn-primary" style="padding:9px 18px; font-size:12px;">Book Trial Class</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a>
+  <a href="location.html">Location</a>
+  <a href="pricing.html">Pricing &amp; Schedule</a>
+  <div class="mobile-divider"></div>
+  <div class="mobile-contact-row">
+    <a href="tel:+916369579589">📞 Call Us</a>
+    <a href="https://wa.me/916369579589?text=Hi%2C%20I%27d%20like%20to%20book%20a%20trial%20class%20at%20Fight%20Mechanics." target="_blank">💬 WhatsApp</a>
+  </div>
+  <a href="https://www.instagram.com/fightmechanics_official/" target="_blank">📸 Instagram</a>
+  <div class="mobile-divider"></div>
+  <a href="https://wa.me/916369579589?text=Hi%2C%20I%27d%20like%20to%20book%20a%20trial%20class%20at%20Fight%20Mechanics." target="_blank" class="btn-primary">Book Trial Class</a>
+</div>
+
+<!-- ══ PRICING ══ -->
+<section class="pricing-section">
+  <div class="pricing-inner">
+
+    <!-- Registration Banner -->
+    <div class="reg-banner reveal">
+      <div class="reg-left">
+        <div class="reg-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div>
+          <div class="reg-text-title">One-Time Registration Fee</div>
+          <div class="reg-text-sub">Paid once when you join — never again.</div>
+        </div>
+      </div>
+      <div class="reg-price">₹999</div>
+      <div class="reg-includes">
+        <div class="reg-include-item"><div class="reg-include-dot"></div> Hand Wraps</div>
+        <div class="reg-include-item"><div class="reg-include-dot"></div> Mouth Guard</div>
+        <div class="reg-include-item"><div class="reg-include-dot"></div> Groin Guard</div>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <span class="eyebrow">Membership Plans</span>
+      <h2 class="section-title">Simple, <span class="gold">Transparent</span> Pricing</h2>
+      <p class="section-sub">Choose the plan that works for you. All adult memberships include access to all training programs.</p>
+    </div>
+
+    <div class="pricing-grid">
+
+      <!-- 3 Months -->
+      <div class="price-card reveal reveal-d1">
+        <div class="price-card-category">Adult · Age 13+</div>
+        <div class="price-card-name">3 Month Plan</div>
+        <div class="price-card-desc">A great starting point to build the habit and test your commitment.</div>
+        <div class="price-amount">
+          <span class="price-currency">₹</span><span class="price-number">8,999</span>
+          <div class="price-period">for 3 months &nbsp;·&nbsp; ₹3,000/month</div>
+        </div>
+        <div class="price-divider"></div>
+        <div class="price-includes-title">What's Included</div>
+        <ul class="price-features">
+          <li class="price-feature"><div class="price-check"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>Access to all programs</li>
+          <li class="price-feature"><div class="price-check"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>MMA, Boxing, Muay Thai, Wrestling</li>
+          <li class="price-feature"><div class="price-check"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>Strength &amp; Conditioning</li>
+          <li class="price-feature"><div class="price-check"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>All morning &amp; evening sessions</li>
+          <li class="price-feature"><div class="price-check"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>Coached classes by experts</li>
+        </ul>
+        <a href="https://wa.me/916369579589?text=Hi%2C%20I%27d%20like%20to%20join%20the%203-month%20plan%20at%20Fight%20Mechanics." target="_blank" class="btn-outline" style="justify-content:center;">Get Started</a>
+      </div>
+
+      <!-- 6 Months – Featured -->
+      <div class="price-card featured reveal reveal-d2">
+        <div class="price-card-badge">Most Popular</div>
+        <div class="price-card-category">Adult · Age 13+</div>
+        <div class="price-card-name">6 Month Plan</div>
+        <div class="price-card-desc">The most popular choice. Best value for those serious about training.</div>
+        <div class="price-amount">
+          <span class="price-currency">₹</span><span class="price-number">16,999</span>
+          <div class="price-period">for 6 months &nbsp;·&nbsp; ₹2,833/month</div>
+        </div>
+        <div class="price-divider"></div>
+        <div class="price-includes-title">What's Included</div>
+        <ul class="price-features">
+          <li class="price-feature"><div class="price-check"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>Access to all programs</li>
+          <li class="price-feature"><div class="price-check"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>MMA, Boxing, Muay Thai, Wrestling</li>
+          <li class="price-feature"><div class="price-check"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>Strength &amp; Conditioning</li>
+          <li class="price-feature"><div class="price-check"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>All morning &amp; evening sessions</li>
+          <li class="price-feature"><div class="price-check"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>Priority scheduling</li>
+          <li class="price-feature"><div class="price-check"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>Best per-month value</li>
+        </ul>
+        <a href="https://wa.me/916369579589?text=Hi%2C%20I%27d%20like%20to%20join%20the%206-month%20plan%20at%20Fight%20Mechanics." target="_blank" class="btn-gold" style="justify-content:center;">Get Started</a>
+      </div>
+
+      <!-- 1 Year -->
+      <div class="price-card reveal reveal-d3">
+        <div class="price-card-category">Adult · Age 13+</div>
+        <div class="price-card-name">Annual Plan</div>
+        <div class="price-card-desc">Full year commitment — maximum savings, maximum results.</div>
+        <div class="price-amount">
+          <span class="price-currency">₹</span><span class="price-number">25,000</span>
+          <div class="price-period">for 12 months &nbsp;·&nbsp; ₹2,083/month</div>
+        </div>
+        <div class="price-divider"></div>
+        <div class="price-includes-title">What's Included</div>
+        <ul class="price-features">
+          <li class="price-feature"><div class="price-check"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>Access to all programs</li>
+          <li class="price-feature"><div class="price-check"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>MMA, Boxing, Muay Thai, Wrestling</li>
+          <li class="price-feature"><div class="price-check"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>Strength &amp; Conditioning</li>
+          <li class="price-feature"><div class="price-check"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>All morning &amp; evening sessions</li>
+          <li class="price-feature"><div class="price-check"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>Lowest monthly rate</li>
+          <li class="price-feature"><div class="price-check"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>Competition training support</li>
+        </ul>
+        <a href="https://wa.me/916369579589?text=Hi%2C%20I%27d%20like%20to%20join%20the%20annual%20plan%20at%20Fight%20Mechanics." target="_blank" class="btn-outline" style="justify-content:center;">Get Started</a>
+      </div>
+
+      <!-- Kids -->
+      <div class="price-card reveal reveal-d1">
+        <div class="price-card-category">Kids · Age 8–13</div>
+        <div class="price-card-name">Kids Martial Arts</div>
+        <div class="price-card-desc">Monthly rolling plan for kids. Discipline, fitness, and confidence — every session.</div>
+        <div class="price-amount">
+          <span class="price-currency">₹</span><span class="price-number">2,000</span>
+          <div class="price-period">per month</div>
+        </div>
+        <div class="price-divider"></div>
+        <div class="price-includes-title">What's Included</div>
+        <ul class="price-features">
+          <li class="price-feature"><div class="price-check"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>Structured martial arts classes</li>
+          <li class="price-feature"><div class="price-check"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>Age-appropriate training</li>
+          <li class="price-feature"><div class="price-check"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>Focus on discipline &amp; respect</li>
+          <li class="price-feature"><div class="price-check"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>Fitness &amp; self-defence skills</li>
+          <li class="price-feature"><div class="price-check"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>Safe, supportive environment</li>
+        </ul>
+        <a href="https://wa.me/916369579589?text=Hi%2C%20I%27d%20like%20to%20enroll%20my%20child%20in%20the%20Kids%20Martial%20Arts%20program%20at%20Fight%20Mechanics." target="_blank" class="btn-outline" style="justify-content:center;">Enroll Your Child</a>
+      </div>
+
+      <!-- Personal Training -->
+      <div class="price-card personal reveal reveal-d2">
+        <div class="personal-left">
+          <div class="price-card-category">Premium</div>
+          <div class="price-card-name">Personal Training</div>
+          <div class="price-card-desc">One-on-one coaching tailored entirely to your goals. Maximum attention, maximum results.</div>
+          <div class="price-amount">
+            <span class="price-currency">₹</span><span class="price-number">8,500</span>
+            <div class="price-period">per month &nbsp;·&nbsp; 5 days/week</div>
+          </div>
+        </div>
+        <div class="personal-right">
+          <div class="personal-perks">
+            <div class="perk-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>5 Days / Week</div>
+            <div class="perk-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/></svg>Custom Program</div>
+            <div class="perk-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>Progress Tracking</div>
+          </div>
+          <a href="https://wa.me/916369579589?text=Hi%2C%20I%27m%20interested%20in%20Personal%20Training%20at%20Fight%20Mechanics." target="_blank" class="btn-primary">Enquire Now</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ SCHEDULE ══ -->
+<section class="schedule-section">
+  <div class="schedule-inner">
+    <div class="schedule-header reveal">
+      <div>
+        <span class="eyebrow">Weekly Timetable</span>
+        <h2 class="section-title">Training <span class="gold">Schedule</span></h2>
+        <p class="section-sub">Two sessions daily, Monday to Saturday. Choose morning or evening — or both.</p>
+      </div>
+      <div>
+        <div class="hours-pill">
+          <svg class="hours-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div class="hours-text">
+            <div class="hours-label">Operating Hours</div>
+            <div class="hours-value"><span>Mon – Sat</span> &nbsp;|&nbsp; 6–9 AM &amp; 5–8:30 PM</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="schedule-grid reveal">
+      <!-- Sunday -->
+      <div class="day-card closed">
+        <div class="day-header">
+          <div class="day-name">Sunday</div>
+          <div class="day-tag">Rest Day</div>
+        </div>
+        <div class="closed-text">Closed</div>
+      </div>
+      <!-- Mon–Sat -->
+      <script>
+        const days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+        const sessionTypes = ['Striking','Grappling','Striking','Grappling','Striking','Striking'];
+        document.write(days.map((d,i) => `
+          <div class="day-card">
+            <div class="day-header">
+              <div class="day-name">${d}</div>
+              <div class="day-tag">${sessionTypes[i]}</div>
+            </div>
+            <div class="day-slots">
+              <div class="time-slot">
+                <div class="time-slot-label">Morning</div>
+                <div class="time-slot-time">6:00 – 9:00 AM</div>
+              </div>
+              <div class="time-slot">
+                <div class="time-slot-label">Evening</div>
+                <div class="time-slot-time">5:00 – 8:30 PM</div>
+              </div>
+            </div>
+          </div>`).join(''));
+      </script>
+    </div>
+
+    <div class="schedule-note reveal">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      Timings may occasionally vary during holidays or special events. Contact us on WhatsApp for the most up-to-date schedule.
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <img src="assets/Logo.png" alt="Fight Mechanics" class="footer-logo">
+        <p class="footer-desc">Chennai's premier combat sports academy in Medavakkam. MMA, Boxing, Muay Thai, Wrestling, S&amp;C, and Kids Martial Arts.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/fightmechanics_official/" target="_blank" class="footer-social" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://wa.me/916369579589" target="_blank" class="footer-social" aria-label="WhatsApp"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+          <a href="tel:+916369579589" class="footer-social" aria-label="Call"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigate</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="pricing.html">Pricing &amp; Schedule</a></li>
+          <li><a href="location.html">Location</a></li>
+          <li><a href="https://share.google/8aB7JGW5Gne2M6UuV" target="_blank">Google Reviews</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Programs</div>
+        <ul class="footer-links">
+          <li><a href="#">MMA</a></li>
+          <li><a href="#">Boxing</a></li>
+          <li><a href="#">Muay Thai</a></li>
+          <li><a href="#">Wrestling</a></li>
+          <li><a href="#">Strength &amp; Conditioning</a></li>
+          <li><a href="#">Kids Martial Arts</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <div class="footer-contact-row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>14th St, near Sai Baba temple, Soumya Nagar, Medavakkam, Chennai – 600100</div>
+        <div class="footer-contact-row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07"/></svg>+91 63695 79589</div>
+        <div class="footer-contact-row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Mon–Sat: 6–9 AM &amp; 5–8:30 PM</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 <span>Fight Mechanics</span>. All rights reserved.</p>
+      <p class="footer-copy">Master the Mechanics of Combat.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

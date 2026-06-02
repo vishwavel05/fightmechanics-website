@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fight Mechanics – Master the Mechanics of Combat | Medavakkam, Chennai</title>
+  <meta name="description" content="Fight Mechanics is Chennai's premier combat sports academy in Medavakkam. MMA, Boxing, Muay Thai, Wrestling, Strength & Conditioning, and Kids Martial Arts.">
+  <link rel="icon" type="image/png" href="assets/Icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: var(--nav-height);
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('assets/hero.png');
+      background-size: cover;
+      background-position: center top;
+      filter: brightness(0.42);
+      transform: scale(1.03);
+      transition: transform 8s ease;
+    }
+    .hero-bg.loaded { transform: scale(1); }
+    .hero-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(10,10,10,0.88) 0%, rgba(10,10,10,0.35) 55%, rgba(10,10,10,0.65) 100%);
+    }
+    .hero-bottom-fade {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 220px;
+      background: linear-gradient(to top, var(--bg-primary), transparent);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 80px 28px 60px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(214,40,40,0.12);
+      border: 1px solid rgba(214,40,40,0.35);
+      border-radius: 100px;
+      padding: 5px 14px 5px 10px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #ff7070;
+      margin-bottom: 28px;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-badge-dot {
+      width: 6px; height: 6px;
+      background: var(--accent-red);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity:1; transform:scale(1); }
+      50% { opacity:0.5; transform:scale(0.7); }
+    }
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(60px, 11vw, 128px);
+      line-height: 0.88;
+      letter-spacing: 2px;
+      margin-bottom: 26px;
+      animation: fadeUp 0.6s ease 0.12s both;
+    }
+    .hero-title .gold { color: var(--accent-gold); }
+    .hero-subtitle {
+      font-size: clamp(14px, 1.8vw, 17px);
+      color: var(--text-secondary);
+      max-width: 500px;
+      line-height: 1.72;
+      margin-bottom: 42px;
+      animation: fadeUp 0.6s ease 0.24s both;
+    }
+    .hero-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      animation: fadeUp 0.6s ease 0.36s both;
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+      z-index: 2;
+      animation: fadeUp 0.6s ease 0.7s both;
+    }
+    .hero-scroll span {
+      font-family: 'Oswald', sans-serif;
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .scroll-bar {
+      width: 1px; height: 44px;
+      background: linear-gradient(to bottom, var(--accent-red) 0%, transparent 100%);
+      animation: scrollAnim 2.2s ease-in-out infinite;
+    }
+    @keyframes scrollAnim {
+      0%,100% { opacity:0.2; transform:scaleY(0.4); transform-origin:top; }
+      50% { opacity:1; transform:scaleY(1); }
+    }
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(22px); }
+      to { opacity:1; transform:translateY(0); }
+    }
+
+    /* ── TRUST STRIP ── */
+    .trust {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .trust-grid {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 20px 28px;
+      border-right: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+    .trust-item:last-child { border-right: none; }
+    .trust-item:hover { background: rgba(230,184,0,0.04); }
+    .trust-icon {
+      width: 38px; height: 38px;
+      background: var(--accent-gold-dim);
+      border: 1px solid var(--border-gold);
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent-gold);
+      flex-shrink: 0;
+    }
+    .trust-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 12.5px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+
+    /* ── PROGRAMS ── */
+    .programs { padding: 96px 28px; }
+    .programs-inner { max-width: 1300px; margin: 0 auto; }
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 52px;
+    }
+    .prog-card {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--bg-card);
+      cursor: default;
+      aspect-ratio: 4/3;
+    }
+
+    .prog-media {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.55s ease;
+    }
+    .prog-card:hover .prog-media { transform: scale(1.06); }
+
+    .prog-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.15) 55%, transparent 100%);
+    }
+
+    .prog-info {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 22px 20px;
+      z-index: 2;
+    }
+    .prog-tag {
+      display: inline-block;
+      background: var(--accent-red);
+      color: #fff;
+      font-family: 'Oswald', sans-serif;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 3px;
+      margin-bottom: 6px;
+    }
+    .prog-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 30px;
+      letter-spacing: 1px;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .prog-desc {
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.5;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, opacity 0.35s ease;
+      opacity: 0;
+    }
+    .prog-card:hover .prog-desc {
+      max-height: 80px;
+      opacity: 1;
+    }
+
+    /* ── KIDS ── */
+    .kids { background: var(--bg-secondary); padding: 96px 28px; }
+    .kids-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .kids-media {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .kids-media-main {
+      grid-column: span 2;
+      aspect-ratio: 16/10;
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+    }
+    .kids-media-sub {
+      aspect-ratio: 1;
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+    }
+    .kids-media-main img,
+    .kids-media-main video,
+    .kids-media-sub img,
+    .kids-media-sub video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .kids-media-main:hover img,
+    .kids-media-main:hover video,
+    .kids-media-sub:hover img,
+    .kids-media-sub:hover video { transform: scale(1.04); }
+
+    .kids-content { }
+    .kids-pillars {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 28px 0 36px;
+    }
+    .kids-pillar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 12.5px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      transition: border-color 0.2s;
+    }
+    .kids-pillar:hover { border-color: var(--accent-gold); }
+    .kids-pillar-dot { width: 5px; height: 5px; background: var(--accent-gold); border-radius: 50%; flex-shrink: 0; }
+
+    /* ── COMMUNITY ── */
+    .community { padding: 96px 28px; }
+    .community-inner { max-width: 1300px; margin: 0 auto; }
+    .community-header { text-align: center; margin-bottom: 52px; }
+    .community-header .section-sub { margin: 0 auto; text-align: center; }
+    .comm-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 12px;
+      height: 560px;
+    }
+    .comm-item {
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+    }
+    .comm-item:nth-child(1) { grid-row: span 2; }
+    .comm-item:nth-child(2) { grid-column: 2; grid-row: 1; }
+    .comm-item:nth-child(3) { grid-column: 2; grid-row: 2; }
+    .comm-item:nth-child(4) { grid-column: 3; grid-row: span 2; }
+    .comm-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: brightness(0.85);
+      transition: transform 0.5s ease, filter 0.4s ease;
+    }
+    .comm-item:hover img { transform: scale(1.04); filter: brightness(1); }
+    .comm-cta { text-align: center; margin-top: 36px; }
+
+    /* ── REVIEWS ── */
+    .reviews { background: var(--bg-secondary); padding: 96px 0; overflow: hidden; }
+    .reviews-header {
+      text-align: center;
+      padding: 0 28px;
+      margin-bottom: 48px;
+      max-width: 1300px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 48px;
+    }
+    .rating-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: rgba(230,184,0,0.07);
+      border: 1px solid rgba(230,184,0,0.2);
+      border-radius: 100px;
+      padding: 7px 18px;
+      margin-bottom: 22px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 12.5px;
+      color: var(--accent-gold);
+      letter-spacing: 0.5px;
+    }
+    .stars-row { display: flex; gap: 3px; color: var(--accent-gold); font-size: 14px; }
+
+    .track-outer { position: relative; overflow: hidden; }
+    .reviews-track {
+      display: flex;
+      gap: 18px;
+      padding: 8px 0 24px;
+      width: max-content;
+      animation: autoScroll 36s linear infinite;
+    }
+    .reviews-track:hover { animation-play-state: paused; }
+    @keyframes autoScroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .r-card {
+      flex-shrink: 0;
+      width: 330px;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 22px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .r-card:hover {
+      border-color: rgba(230,184,0,0.18);
+      background: rgba(255,255,255,0.055);
+    }
+    .r-head { display: flex; align-items: center; gap: 11px; margin-bottom: 13px; }
+    .r-avatar {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px; font-weight: 600;
+      color: #fff; flex-shrink: 0;
+    }
+    .r-meta { flex: 1; min-width: 0; }
+    .r-name { font-size: 13.5px; font-weight: 600; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .r-date { font-size: 11px; color: var(--text-muted); }
+    .r-stars { display: flex; gap: 2px; color: #FBBC04; font-size: 12px; margin-bottom: 11px; }
+    .r-text { font-size: 12.5px; color: var(--text-secondary); line-height: 1.65; }
+    .r-footer {
+      display: flex; align-items: center; gap: 6px;
+      margin-top: 15px; padding-top: 13px;
+      border-top: 1px solid var(--border);
+      font-size: 11px; color: var(--text-muted);
+    }
+    .google-g { width: 16px; height: 16px; flex-shrink: 0; }
+
+    .reviews-cta { text-align: center; padding: 36px 28px 0; }
+
+    /* ── FINAL CTA ── */
+    .final-cta {
+      padding: 120px 28px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .final-cta::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(214,40,40,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .final-inner { position: relative; z-index:1; max-width: 680px; margin: 0 auto; }
+    .final-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(52px, 9vw, 100px);
+      letter-spacing: 2px;
+      line-height: 0.9;
+      margin-bottom: 22px;
+    }
+    .final-title .gold { color: var(--accent-gold); }
+    .final-sub { color: var(--text-secondary); font-size: 15px; line-height: 1.72; margin-bottom: 38px; }
+    .final-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+      .programs-grid { grid-template-columns: repeat(2,1fr); }
+      .comm-grid { grid-template-columns: 1fr 1fr; height: auto; grid-template-rows: auto; }
+      .comm-item { aspect-ratio: 4/3; }
+      .comm-item:nth-child(1),
+      .comm-item:nth-child(2),
+      .comm-item:nth-child(3),
+      .comm-item:nth-child(4) { grid-column: auto; grid-row: auto; }
+      .comm-item:nth-child(2) { grid-column: span 2; }
+    }
+    @media (max-width: 900px) {
+      .trust-grid { grid-template-columns: repeat(2,1fr); }
+      .trust-item:nth-child(2) { border-right: none; }
+      .trust-item:nth-child(3) { border-top: 1px solid var(--border); }
+      .trust-item:nth-child(4) { border-right: none; border-top: 1px solid var(--border); }
+      .kids-inner { grid-template-columns: 1fr; gap: 48px; }
+    }
+    @media (max-width: 768px) {
+      .programs-grid { grid-template-columns: 1fr; }
+      .kids-media { grid-template-columns: 1fr 1fr; }
+      .kids-pillars { grid-template-columns: 1fr; }
+      .comm-grid { grid-template-columns: 1fr 1fr; height: auto; }
+      .comm-item { aspect-ratio: 1; }
+      .comm-item:nth-child(2) { grid-column: span 2; aspect-ratio: 16/9; }
+      .hero-btns { flex-direction: column; }
+      .hero-btns .btn-primary, .hero-btns .btn-outline { justify-content: center; }
+      .programs { padding: 64px 20px; }
+      .kids { padding: 64px 20px; }
+      .community { padding: 64px 20px; }
+      .reviews { padding: 64px 0; }
+      .final-cta { padding: 80px 20px; }
+    }
+    @media (max-width: 480px) {
+      .trust-grid { grid-template-columns: 1fr; }
+      .trust-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .trust-item:nth-child(3), .trust-item:nth-child(4) { border-top: none; }
+      .trust-item:last-child { border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/Logo_navbar.png" alt="Fight Mechanics">
+    </a>
+
+    <ul class="nav-center">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="location.html">Location</a></li>
+      <li><a href="pricing.html">Pricing &amp; Schedule</a></li>
+      <li class="nav-dropdown" id="contactDropdown">
+        <button class="nav-dropdown-btn">
+          Contact
+          <svg class="chevron" viewBox="0 0 10 10" fill="none">
+            <path d="M2 3.5l3 3 3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <div class="dropdown-panel">
+          <a href="tel:+916369579589" class="dropdown-link">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+            +91 63695 79589
+          </a>
+          <a href="https://wa.me/916369579589?text=Hi%2C%20I%27d%20like%20to%20book%20a%20trial%20class%20at%20Fight%20Mechanics." target="_blank" class="dropdown-link">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp Us
+          </a>
+        </div>
+      </li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="https://www.instagram.com/fightmechanics_official/" target="_blank" class="nav-ig" aria-label="Instagram">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="https://wa.me/916369579589?text=Hi%2C%20I%27d%20like%20to%20book%20a%20trial%20class%20at%20Fight%20Mechanics." target="_blank" class="btn-primary" style="padding:9px 18px; font-size:12px;">Book Trial Class</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a>
+  <a href="pricing.html">Pricing &amp; Schedule</a>
+  <a href="location.html">Location</a>
+  <div class="mobile-divider"></div>
+  <div class="mobile-contact-row">
+    <a href="tel:+916369579589">📞 Call Us</a>
+    <a href="https://wa.me/916369579589?text=Hi%2C%20I%27d%20like%20to%20book%20a%20trial%20class%20at%20Fight%20Mechanics." target="_blank">💬 WhatsApp</a>
+  </div>
+  <a href="https://www.instagram.com/fightmechanics_official/" target="_blank">📸 Instagram</a>
+  <div class="mobile-divider"></div>
+  <a href="https://wa.me/916369579589?text=Hi%2C%20I%27d%20like%20to%20book%20a%20trial%20class%20at%20Fight%20Mechanics." target="_blank" class="btn-primary">Book Trial Class</a>
+</div>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-gradient"></div>
+  <div class="hero-bottom-fade"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      Chennai's Combat Sports Academy · Medavakkam
+    </div>
+    <h1 class="hero-title">
+      Master The<br><span class="gold">Mechanics</span><br>Of Combat
+    </h1>
+    <p class="hero-subtitle">Structured training in MMA, Boxing, Muay Thai, Wrestling, Strength &amp; Conditioning, and Kids Martial Arts.</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/916369579589?text=Hi%2C%20I%27d%20like%20to%20book%20a%20trial%20class%20at%20Fight%20Mechanics." target="_blank" class="btn-primary">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Book Trial Class
+      </a>
+      <a href="pricing.html" class="btn-outline">
+        View Pricing &amp; Schedule
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-bar"></div>
+  </div>
+</section>
+
+<!-- ══ TRUST STRIP ══ -->
+<div class="trust">
+  <div class="trust-grid">
+    <div class="trust-item">
+      <div class="trust-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+      <span class="trust-label">Beginner Friendly</span>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+      <span class="trust-label">Kids Programs Available</span>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      <span class="trust-label">Flexible Timings</span>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      <span class="trust-label">Trial Classes Available</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PROGRAMS ══ -->
+<section class="programs">
+  <div class="programs-inner">
+    <div class="reveal">
+      <span class="eyebrow">Training Programs</span>
+      <h2 class="section-title">Choose Your <span class="gold">Discipline</span></h2>
+      <p class="section-sub">Six world-class programs under one roof. Whether you're chasing technique, fitness, or competition — we have the right program for you.</p>
+    </div>
+    <div class="programs-grid">
+      <!-- MMA -->
+      <div class="prog-card reveal reveal-d1">
+        <img class="prog-media" src="assets/Icon.png" alt="MMA">
+        <div class="prog-overlay"></div>
+        <div class="prog-info">
+          <div class="prog-name">MMA</div>
+          <div class="prog-desc">Mixed Martial Arts — the complete combat sport combining striking, grappling, and ground fighting into one disciplined system.</div>
+        </div>
+      </div>
+      <!-- Boxing -->
+      <div class="prog-card">
+        <video class="prog-media" src="assets/Boxing.mp4" autoplay muted loop playsinline></video>
+        <div class="prog-overlay"></div>
+        <div class="prog-info">
+          <div class="prog-name">Boxing</div>
+          <div class="prog-desc">Technical striking, footwork, head movement, and combination training. From beginner to competitive boxing.</div>
+        </div>
+      </div>
+      <!-- Muay Thai -->
+      <div class="prog-card">
+        <video class="prog-media" src="assets/Muay_Thai.mp4" autoplay muted loop playsinline></video>
+        <div class="prog-overlay"></div>
+        <div class="prog-info">
+          <div class="prog-name">Muay Thai</div>
+          <div class="prog-desc">The art of eight limbs. Master punches, kicks, elbows, and knees with authentic Thai boxing training.</div>
+        </div>
+      </div>
+      <!-- Wrestling -->
+      <div class="prog-card">
+        <video class="prog-media" src="assets/Wrestling.mp4" autoplay muted loop playsinline></video>
+        <div class="prog-overlay"></div>
+        <div class="prog-info">
+          <div class="prog-name">Wrestling</div>
+          <div class="prog-desc">Takedowns, control, and ground dominance. Essential for MMA and powerful as a standalone discipline.</div>
+        </div>
+      </div>
+      <!-- S&C -->
+      <div class="prog-card">
+        <video class="prog-media" src="assets/S&C.mp4" autoplay muted loop playsinline></video>
+        <div class="prog-overlay"></div>
+        <div class="prog-info">
+          <div class="prog-name">Strength &amp; Conditioning</div>
+          <div class="prog-desc">Fighter-focused athletic development. Build the strength, endurance, and explosiveness that combat sports demand.</div>
+        </div>
+      </div>
+      <!-- Kids -->
+      <div class="prog-card">
+        <img class="prog-media" src="assets/Kids_1.jpg" alt="Kids Martial Arts">
+        <div class="prog-overlay"></div>
+        <div class="prog-info">
+          <div class="prog-tag">Ages 8–13</div>
+          <div class="prog-name">Kids Martial Arts</div>
+          <div class="prog-desc">Discipline, confidence, fitness, and focus — taught in a safe and structured environment by experienced coaches.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ KIDS ══ -->
+<section class="kids">
+  <div class="kids-inner">
+    <div class="kids-media reveal">
+      <div class="kids-media-main">
+        <img src="assets/Kids_4.webp" alt="Kids martial arts session">
+      </div>
+      <div class="kids-media-sub">
+        <video src="assets/Kids_2.mp4" autoplay muted loop playsinline style="pointer-events:none;"></video>
+      </div>
+      <div class="kids-media-sub">
+        <img src="assets/Kids_3.jpg" alt="Kids training at Fight Mechanics">
+      </div>
+    </div>
+    <div class="kids-content reveal reveal-d2">
+      <span class="eyebrow">Kids Martial Arts</span>
+      <h2 class="section-title">Ages <span class="gold">8–13</span></h2>
+      <p class="section-sub">More than just martial arts — our kids program builds character, confidence, and lifelong skills in a safe, structured, and fun environment.</p>
+      <div class="kids-pillars">
+        <div class="kids-pillar"><div class="kids-pillar-dot"></div>Discipline</div>
+        <div class="kids-pillar"><div class="kids-pillar-dot"></div>Confidence</div>
+        <div class="kids-pillar"><div class="kids-pillar-dot"></div>Focus</div>
+        <div class="kids-pillar"><div class="kids-pillar-dot"></div>Fitness</div>
+        <div class="kids-pillar"><div class="kids-pillar-dot"></div>Respect</div>
+        <div class="kids-pillar"><div class="kids-pillar-dot"></div>Self-Defence</div>
+      </div>
+      <a href="https://wa.me/916369579589?text=Hi%2C%20I%27d%20like%20to%20book%20a%20trial%20class%20for%20my%20child%20at%20Fight%20Mechanics." target="_blank" class="btn-primary">
+        Book Kids Trial Class
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ COMMUNITY ══ -->
+<section class="community">
+  <div class="community-inner">
+    <div class="community-header reveal">
+      <span class="eyebrow">Our Community</span>
+      <h2 class="section-title">Train With A Team That <span class="gold">Pushes</span> You Forward</h2>
+      <p class="section-sub">Fight Mechanics is more than a gym. It's a community of athletes who show up, support each other, and grow together — from the mat to the podium.</p>
+    </div>
+    <div class="comm-grid">
+      <div class="comm-item reveal reveal-d1"><img src="assets/Community_1.webp" alt="Fight Mechanics team"></div>
+      <div class="comm-item reveal reveal-d2"><img src="assets/Community_2.jpg" alt="Fight Mechanics competition medals"></div>
+      <div class="comm-item reveal reveal-d3"><img src="assets/Community_3.webp" alt="Fight Mechanics training group"></div>
+      <div class="comm-item reveal reveal-d4"><img src="assets/Community_4.webp" alt="Fight Mechanics kids class"></div>
+    </div>
+    <div class="comm-cta reveal">
+      <a href="https://www.instagram.com/fightmechanics_official/" target="_blank" class="btn-outline">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg>
+        Follow on Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ REVIEWS ══ -->
+<section class="reviews">
+  <div class="reviews-header reveal">
+    <div class="rating-pill">
+      <div class="stars-row">★★★★★</div>
+      5.0 Rating on Google &nbsp;·&nbsp; 130+ Reviews
+    </div>
+    <h2 class="section-title">130+ Five-Star <span class="gold">Reviews</span></h2>
+    <p class="section-sub">Trusted by beginners, athletes, and MMA enthusiasts across Chennai.</p>
+  </div>
+  <div class="track-outer">
+    <div class="reviews-track" id="reviewsTrack"></div>
+  </div>
+  <div class="reviews-cta reveal">
+    <a href="https://share.google/8aB7JGW5Gne2M6UuV" target="_blank" class="btn-outline">
+      <svg class="google-g" viewBox="0 0 24 24" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+      View All Google Reviews
+    </a>
+  </div>
+</section>
+
+<!-- ══ FINAL CTA ══ -->
+<section class="final-cta">
+  <div class="final-inner reveal">
+    <span class="eyebrow" style="display:block; text-align:center;">Start Today</span>
+    <h2 class="final-title">Ready To Start <span class="gold">Training?</span></h2>
+    <p class="final-sub">Join Fight Mechanics and train in an environment focused on technique, discipline, and real progress.</p>
+    <div class="final-btns">
+      <a href="https://wa.me/916369579589?text=Hi%2C%20I%27d%20like%20to%20book%20a%20trial%20class%20at%20Fight%20Mechanics." target="_blank" class="btn-primary" style="padding:14px 32px; font-size:14px;">Book Trial Class</a>
+      <a href="pricing.html" class="btn-outline" style="padding:14px 32px; font-size:14px;">Pricing &amp; Schedule</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <img src="assets/Logo.png" alt="Fight Mechanics" class="footer-logo">
+        <p class="footer-desc">Chennai's premier combat sports academy. Training in MMA, Boxing, Muay Thai, Wrestling, Strength &amp; Conditioning, and Kids Martial Arts in Medavakkam.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/fightmechanics_official/" target="_blank" class="footer-social" aria-label="Instagram">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="https://wa.me/916369579589" target="_blank" class="footer-social" aria-label="WhatsApp">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+          <a href="tel:+916369579589" class="footer-social" aria-label="Call">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigate</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="pricing.html">Pricing &amp; Schedule</a></li>
+          <li><a href="location.html">Location</a></li>
+          <li><a href="https://share.google/8aB7JGW5Gne2M6UuV" target="_blank">Google Reviews</a></li>
+          <li><a href="https://www.instagram.com/fightmechanics_official/" target="_blank">Instagram</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Programs</div>
+        <ul class="footer-links">
+          <li><a href="#">MMA</a></li>
+          <li><a href="#">Boxing</a></li>
+          <li><a href="#">Muay Thai</a></li>
+          <li><a href="#">Wrestling</a></li>
+          <li><a href="#">Strength &amp; Conditioning</a></li>
+          <li><a href="#">Kids Martial Arts</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <div class="footer-contact-row">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          14th St, near Sai Baba temple, Soumya Nagar, Medavakkam, Chennai – 600100
+        </div>
+        <div class="footer-contact-row">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07"/></svg>
+          +91 63695 79589
+        </div>
+        <div class="footer-contact-row">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Mon–Sat: 6–9 AM &amp; 5–8:30 PM
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 <span>Fight Mechanics</span>. All rights reserved. Medavakkam, Chennai.</p>
+      <p class="footer-copy">Master the Mechanics of Combat.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+  // Hero bg
+  document.getElementById('heroBg').style.backgroundImage = "url('assets/hero.png')";
+  window.addEventListener('load', () => {
+    document.getElementById('heroBg').classList.add('loaded');
+  });
+
+  // Reviews
+  const reviews = [
+    { name:"Praga Kumar", date:"8 months ago", review:"As a beginner, I was intimidated at first, but Coach Dinesh and Mani made me feel welcome from day one. Great coaching, great facility, and real progress every week." },
+    { name:"Nandha Kumar", date:"6 months ago", review:"The gym has a great environment for boxing and MMA. Coach Dinesh and Mani provide excellent training that genuinely improves your skills." },
+    { name:"Tamil Selvan A", date:"1 year ago", review:"The personal training here is outstanding. Coach Dinesh adapts the training to your goals and provides a safe, structured learning environment." },
+    { name:"Sharuk Ahamed", date:"2 years ago", review:"A great place to learn boxing and self-defence. I've improved my fitness, footwork, and overall skills more than I expected." },
+    { name:"Vigneshwaran Ravichandran", date:"1 year ago", review:"One of the best decisions I've made. The coaches are friendly, supportive, and provide excellent guidance for anyone starting MMA." },
+    { name:"Suresh B.E.", date:"4 months ago", review:"After five months of training, I lost nearly 10kg and became much fitter. Excellent coaching for anyone looking to learn MMA and improve their fitness." }
+  ];
+  const avatarColors = ['#D62828','#c4920a','#1a6b3a','#1a4a8a','#6b1a6b','#8a3a1a'];
+  const googleG = `<svg class="google-g" viewBox="0 0 24 24" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>`;
+  function initials(n) { return n.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase(); }
+  const doubled = [...reviews,...reviews];
+  document.getElementById('reviewsTrack').innerHTML = doubled.map((r,i) => `
+    <div class="r-card">
+      <div class="r-head">
+        <div class="r-avatar" style="background:${avatarColors[i%reviews.length]}">${initials(r.name)}</div>
+        <div class="r-meta"><div class="r-name">${r.name}</div><div class="r-date">${r.date}</div></div>
+        ${googleG}
+      </div>
+      <div class="r-stars">★★★★★</div>
+      <div class="r-text">${r.review}</div>
+      <div class="r-footer">${googleG} Google Review</div>
+    </div>`).join('');
+</script>
+</body>
+</html>

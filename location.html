@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Location – Fight Mechanics | Medavakkam, Chennai</title>
+  <meta name="description" content="Find Fight Mechanics at 14th St, near Sai Baba temple, Soumya Nagar, Medavakkam, Chennai. Get directions, view facility photos, and contact us.">
+  <link rel="icon" type="image/png" href="assets/Icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── PAGE HERO ── */
+    .page-hero {
+      position: relative;
+      padding: calc(var(--nav-height) + 72px) 28px 72px;
+      text-align: center;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 0%, rgba(214,40,40,0.09) 0%, transparent 70%),
+        radial-gradient(ellipse 30% 30% at 20% 80%, rgba(230,184,0,0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .page-hero-icon {
+      width: 80px;
+      margin: 0 auto 28px;
+      animation: bounceIn 0.7s cubic-bezier(0.34,1.56,0.64,1) both;
+    }
+    @keyframes bounceIn {
+      from { opacity:0; transform:scale(0.5); }
+      to { opacity:1; transform:scale(1); }
+    }
+    .page-hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(52px, 10vw, 110px);
+      letter-spacing: 2px;
+      line-height: 0.9;
+      animation: fadeUp 0.6s ease 0.2s both;
+    }
+    .page-hero h1 span { color: var(--accent-gold); }
+    .page-hero-sub {
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin: 18px auto 0;
+      max-width: 480px;
+      line-height: 1.7;
+      animation: fadeUp 0.6s ease 0.35s both;
+    }
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(18px); }
+      to { opacity:1; transform:translateY(0); }
+    }
+
+    /* ── LOCATION LAYOUT ── */
+    .location-section {
+      padding: 80px 28px;
+    }
+    .location-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    /* ── INFO PANEL ── */
+    .info-panel { display: contents; }
+
+    .info-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: border-color 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .info-card:hover { border-color: rgba(230,184,0,0.2); }
+    .info-card.address-card { order: 3; }
+    .info-card.hours-card { order: 1; }
+    .info-card.contact-card { order: 2; }
+
+    .info-card-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--accent-red);
+      margin-bottom: 16px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .info-card-title::after {
+      content: '';
+      flex: 1; height: 1px;
+      background: var(--border);
+    }
+
+    .address-text {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+    .address-pin {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      font-family: 'Oswald', sans-serif;
+      letter-spacing: 0.5px;
+    }
+
+    /* Hours table */
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+    .hours-row:last-child { border-bottom: none; }
+    .hours-day { color: var(--text-secondary); font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.3px; }
+    .hours-time { color: var(--text-primary); font-family: 'Oswald', sans-serif; font-size: 13px; text-align: right; }
+    .hours-closed { color: var(--text-muted); font-size: 12px; }
+    .hours-time.open { color: var(--accent-gold); }
+
+    /* Contact links */
+    .contact-links { display: flex; flex-direction: column; gap: 10px; }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 13px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+    .contact-link:hover {
+      border-color: rgba(230,184,0,0.3);
+      background: rgba(230,184,0,0.04);
+    }
+    .contact-link-icon {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-link-icon.red { background: rgba(214,40,40,0.12); color: var(--accent-red); }
+    .contact-link-icon.green { background: rgba(37,211,102,0.1); color: #25D366; }
+    .contact-link-icon.blue { background: rgba(66,133,244,0.1); color: #4285F4; }
+    .contact-link-text { }
+    .contact-link-label { font-size: 11px; color: var(--text-muted); font-family: 'Oswald', sans-serif; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 1px; }
+    .contact-link-value { font-size: 14px; font-weight: 500; color: var(--text-primary); }
+
+    /* CTA row */
+    .location-ctas { display: none; }
+
+    /* ── MAP ── */
+    .map-container {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      order: 4;
+    }
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 280px;
+      display: block;
+      border: none;
+      filter: grayscale(30%) contrast(1.05);
+      flex: 1;
+    }
+    .map-footer {
+      background: var(--bg-secondary);
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      flex-shrink: 0;
+    }
+    .map-address-mini {
+      font-size: 11px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    /* ── GALLERY ── */
+    .gallery-section {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 80px 28px;
+    }
+    .gallery-inner { max-width: 1300px; margin: 0 auto; }
+    .gallery-header { margin-bottom: 48px; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 260px 260px;
+      gap: 12px;
+    }
+    .gallery-item {
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      cursor: default;
+    }
+    .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease, filter 0.4s ease;
+      filter: brightness(0.88);
+    }
+    .gallery-item:hover img { transform: scale(1.05); filter: brightness(1); }
+    .gallery-item-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+
+    /* ── BOTTOM CTA ── */
+    .loc-cta {
+      padding: 96px 28px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .loc-cta::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 600px; height: 400px;
+      background: radial-gradient(ellipse, rgba(214,40,40,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .loc-cta-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+    .loc-cta-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(44px, 8vw, 88px);
+      line-height: 0.9; letter-spacing: 2px; margin-bottom: 20px;
+    }
+    .loc-cta-title span { color: var(--accent-gold); }
+    .loc-cta-sub { font-size: 15px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 36px; }
+    .loc-cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+      .gallery-item:nth-child(1) { grid-column: span 2; aspect-ratio: 16/7; }
+      .gallery-item { aspect-ratio: 4/3; }
+    }
+    @media (max-width: 768px) {
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-item:nth-child(1) { grid-column: span 2; }
+      .location-inner { grid-template-columns: 1fr; }
+      .info-card.address-card { order: 3; }
+      .info-card.hours-card { order: 1; }
+      .info-card.contact-card { order: 2; }
+      .map-container { order: 4; }
+      .loc-cta { padding: 72px 20px; }
+      .gallery-section { padding: 56px 20px; }
+      .location-section { padding: 56px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/Logo_navbar.png" alt="Fight Mechanics">
+    </a>
+    <ul class="nav-center">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="location.html" class="active">Location</a></li>
+      <li><a href="pricing.html">Pricing &amp; Schedule</a></li>
+      <li class="nav-dropdown" id="contactDropdown">
+        <button class="nav-dropdown-btn">
+          Contact
+          <svg class="chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5l3 3 3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </button>
+        <div class="dropdown-panel">
+          <a href="tel:+916369579589" class="dropdown-link">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+            +91 63695 79589
+          </a>
+          <a href="https://wa.me/916369579589?text=Hi%2C%20I%27d%20like%20to%20book%20a%20trial%20class%20at%20Fight%20Mechanics." target="_blank" class="dropdown-link">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp Us
+          </a>
+        </div>
+      </li>
+    </ul>
+    <div class="nav-right">
+      <a href="https://www.instagram.com/fightmechanics_official/" target="_blank" class="nav-ig" aria-label="Instagram">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="https://wa.me/916369579589?text=Hi%2C%20I%27d%20like%20to%20book%20a%20trial%20class%20at%20Fight%20Mechanics." target="_blank" class="btn-primary" style="padding:9px 18px; font-size:12px;">Book Trial Class</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a>
+  <a href="location.html">Location</a>
+  <a href="pricing.html">Pricing &amp; Schedule</a>
+  <div class="mobile-divider"></div>
+  <div class="mobile-contact-row">
+    <a href="tel:+916369579589">📞 Call Us</a>
+    <a href="https://wa.me/916369579589?text=Hi%2C%20I%27d%20like%20to%20book%20a%20trial%20class%20at%20Fight%20Mechanics." target="_blank">💬 WhatsApp</a>
+  </div>
+  <a href="https://www.instagram.com/fightmechanics_official/" target="_blank">📸 Instagram</a>
+  <div class="mobile-divider"></div>
+  <a href="https://wa.me/916369579589?text=Hi%2C%20I%27d%20like%20to%20book%20a%20trial%20class%20at%20Fight%20Mechanics." target="_blank" class="btn-primary">Book Trial Class</a>
+</div>
+
+<!-- ══ FACILITY GALLERY ══ -->
+<section class="gallery-section">
+  <div class="gallery-inner">
+    <div class="gallery-header reveal">
+      <span class="eyebrow">The Facility</span>
+      <h2 class="section-title">Train In A <span class="gold">Real</span> Gym</h2>
+      <p class="section-sub">Spacious training area, professional equipment, and a dedicated mat space — built for serious combat sports training.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item reveal reveal-d1">
+        <img src="assets/location_1.png" alt="Fight Mechanics training floor with wrestlers">
+        <div class="gallery-item-overlay"></div>
+      </div>
+      <div class="gallery-item reveal reveal-d2">
+        <img src="assets/location_2.png" alt="Fight Mechanics gym interior with Fight Mechanics banner">
+        <div class="gallery-item-overlay"></div>
+      </div>
+      <div class="gallery-item reveal reveal-d3">
+        <img src="assets/location_3.png" alt="Fight Mechanics punching bags and equipment">
+        <div class="gallery-item-overlay"></div>
+      </div>
+      <div class="gallery-item reveal reveal-d2">
+        <img src="assets/location_4.png" alt="Fight Mechanics heavy bag training area">
+        <div class="gallery-item-overlay"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ LOCATION & MAP ══ -->
+<section class="location-section">
+  <div class="location-inner">
+
+    <!-- Info Panel -->
+    <div class="info-panel">
+
+      <!-- Hours -->
+      <div class="info-card hours-card reveal reveal-d1">
+        <div class="info-card-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Opening Hours
+        </div>
+        <div class="hours-table">
+          <div class="hours-row">
+            <span class="hours-day">Monday</span>
+            <span class="hours-time open">6–9 AM &nbsp;&amp;&nbsp; 5–8:30 PM</span>
+          </div>
+          <div class="hours-row">
+            <span class="hours-day">Tuesday</span>
+            <span class="hours-time open">6–9 AM &nbsp;&amp;&nbsp; 5–8:30 PM</span>
+          </div>
+          <div class="hours-row">
+            <span class="hours-day">Wednesday</span>
+            <span class="hours-time open">6–9 AM &nbsp;&amp;&nbsp; 5–8:30 PM</span>
+          </div>
+          <div class="hours-row">
+            <span class="hours-day">Thursday</span>
+            <span class="hours-time open">6–9 AM &nbsp;&amp;&nbsp; 5–8:30 PM</span>
+          </div>
+          <div class="hours-row">
+            <span class="hours-day">Friday</span>
+            <span class="hours-time open">6–9 AM &nbsp;&amp;&nbsp; 5–8:30 PM</span>
+          </div>
+          <div class="hours-row">
+            <span class="hours-day">Saturday</span>
+            <span class="hours-time open">6–9 AM &nbsp;&amp;&nbsp; 5–8:30 PM</span>
+          </div>
+          <div class="hours-row">
+            <span class="hours-day">Sunday</span>
+            <span class="hours-time hours-closed">Closed</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div class="info-card contact-card reveal reveal-d2">
+        <div class="info-card-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          Contact
+        </div>
+        <div class="contact-links">
+          <a href="tel:+916369579589" class="contact-link">
+            <div class="contact-link-icon red"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg></div>
+            <div class="contact-link-text">
+              <div class="contact-link-label">Phone</div>
+              <div class="contact-link-value">+91 63695 79589</div>
+            </div>
+          </a>
+          <a href="https://wa.me/916369579589?text=Hi%2C%20I%27d%20like%20to%20book%20a%20trial%20class%20at%20Fight%20Mechanics." target="_blank" class="contact-link">
+            <div class="contact-link-icon green"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
+            <div class="contact-link-text">
+              <div class="contact-link-label">WhatsApp</div>
+              <div class="contact-link-value">Message us directly</div>
+            </div>
+          </a>
+          <a href="https://share.google/8aB7JGW5Gne2M6UuV" target="_blank" class="contact-link">
+            <div class="contact-link-icon blue">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            </div>
+            <div class="contact-link-text">
+              <div class="contact-link-label">Google Reviews</div>
+              <div class="contact-link-value">★★★★★ 5.0 · 130+ Reviews</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Address -->
+      <div class="info-card address-card reveal reveal-d3">
+        <div class="info-card-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Address
+        </div>
+        <p class="address-text">14th Street, near Sai Baba Temple,<br>Soumya Nagar, Medavakkam,<br>Chennai, Tamil Nadu – 600100</p>
+        <p class="address-pin">📍 Landmark: Near Sai Baba Temple</p>
+      </div>
+
+      <!-- CTA Buttons -->
+      <div class="location-ctas reveal reveal-d3">
+        <a href="https://maps.app.goo.gl/upSugEc8o1syJfuXA" target="_blank" class="btn-primary">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Get Directions
+        </a>
+        <a href="https://wa.me/916369579589?text=Hi%2C%20I%27d%20like%20to%20book%20a%20trial%20class%20at%20Fight%20Mechanics." target="_blank" class="btn-outline">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp Us
+        </a>
+        <a href="https://share.google/8aB7JGW5Gne2M6UuV" target="_blank" class="btn-outline">
+          View Google Reviews
+        </a>
+      </div>
+    </div>
+
+    <!-- Google Map -->
+    <div class="map-container reveal reveal-d4">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.0!2d80.198!3d12.921!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525d5c0!2sFight%20Mechanics%2C%2014th%20St%2C%20Soumya%20Nagar%2C%20Medavakkam%2C%20Chennai%2C%20Tamil%20Nadu%20600100!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Fight Mechanics Location">
+      </iframe>
+      <div class="map-footer">
+        <div class="map-address-mini">
+          <strong style="color:var(--text-primary);">Fight Mechanics</strong><br>
+          14th St, Soumya Nagar, Medavakkam, Chennai – 600100
+        </div>
+        <a href="https://maps.app.goo.gl/upSugEc8o1syJfuXA" target="_blank" class="btn-primary" style="padding:9px 18px; font-size:12px;">
+          Open in Maps
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ BOTTOM CTA ══ -->
+<section class="loc-cta">
+  <div class="loc-cta-inner reveal">
+    <span class="eyebrow" style="display:block; text-align:center;">Come Visit Us</span>
+    <h2 class="loc-cta-title">Start With A <span>Free</span> Trial</h2>
+    <p class="loc-cta-sub">Book a trial class on WhatsApp and come see the facility, meet the coaches, and experience a session before committing.</p>
+    <div class="loc-cta-btns">
+      <a href="https://wa.me/916369579589?text=Hi%2C%20I%27d%20like%20to%20book%20a%20trial%20class%20at%20Fight%20Mechanics." target="_blank" class="btn-primary" style="padding:14px 32px; font-size:14px;">Book Trial Class</a>
+      <a href="https://maps.app.goo.gl/upSugEc8o1syJfuXA" target="_blank" class="btn-outline" style="padding:14px 32px; font-size:14px;">Get Directions</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <img src="assets/Logo.png" alt="Fight Mechanics" class="footer-logo">
+        <p class="footer-desc">Chennai's premier combat sports academy in Medavakkam. MMA, Boxing, Muay Thai, Wrestling, S&amp;C, and Kids Martial Arts.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/fightmechanics_official/" target="_blank" class="footer-social" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://wa.me/916369579589" target="_blank" class="footer-social" aria-label="WhatsApp"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+          <a href="tel:+916369579589" class="footer-social" aria-label="Call"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigate</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="pricing.html">Pricing &amp; Schedule</a></li>
+          <li><a href="location.html">Location</a></li>
+          <li><a href="https://share.google/8aB7JGW5Gne2M6UuV" target="_blank">Google Reviews</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Programs</div>
+        <ul class="footer-links">
+          <li><a href="#">MMA</a></li>
+          <li><a href="#">Boxing</a></li>
+          <li><a href="#">Muay Thai</a></li>
+          <li><a href="#">Wrestling</a></li>
+          <li><a href="#">Strength &amp; Conditioning</a></li>
+          <li><a href="#">Kids Martial Arts</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <div class="footer-contact-row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>14th St, near Sai Baba temple, Soumya Nagar, Medavakkam, Chennai – 600100</div>
+        <div class="footer-contact-row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07"/></svg>+91 63695 79589</div>
+        <div class="footer-contact-row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Mon–Sat: 6–9 AM &amp; 5–8:30 PM</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 <span>Fight Mechanics</span>. All rights reserved.</p>
+      <p class="footer-copy">Master the Mechanics of Combat.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
